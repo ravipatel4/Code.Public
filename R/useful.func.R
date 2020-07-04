@@ -5,7 +5,7 @@ library(ggplot2)
 library(ggrepel)
 
 runNPlotPCA <- function(rawCountMat, colAnnot1=NULL, colAnnot2=NULL, pcOnX=1, pcOnY=2, labels=NULL, returnPCAObj=F) {
-  # rawCountMat can be a matrix or a data.frame of raw read counts with genes as rows and samples as columns
+  # rawCountMat can be a matrix or a data.frame of raw read counts with genes as rows and samples as columns. Lowly expressed genes should be removed before running this function.
   # colAnnot1 and colAnnot2 are vectors indicating column annotations - are used for assigning different colors and shapes, respectively, to different categories. (e.g. colAnnot1 = c("WT","WT","Cdk2","Cdk2"))
   # pcOnX and pcOnY lets the uses select specific PC to plot on each of the axis.
   # labels is a vector indicating sample names/identifiers that will be displaced next to each sample on the PCA plot.

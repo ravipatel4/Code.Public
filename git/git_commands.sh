@@ -47,6 +47,9 @@ git branch -d <branch name>
 # Delete a branch forcefully.
 git branch -D <branch name>
 
+# Delete a remote branch from the command prompt
+git push origin --delete <branch name>
+
 # Create and checkout the branch.
 git checkout -b <branch name>
 

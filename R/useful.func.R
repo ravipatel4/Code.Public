@@ -3,6 +3,7 @@
 library(edgeR)
 library(ggplot2)
 library(ggrepel)
+library(tidyverse)
 
 runNPlotPCA <- function(rawCountMat, colAnnot1=NULL, colAnnot2=NULL, pcOnX=1, pcOnY=2, labels=NULL, returnPCAObj=F) {
   # rawCountMat can be a matrix or a data.frame of raw read counts with genes as rows and samples as columns. Lowly expressed genes should be removed before running this function.
@@ -16,7 +17,7 @@ runNPlotPCA <- function(rawCountMat, colAnnot1=NULL, colAnnot2=NULL, pcOnX=1, pc
   # Calculate percent var for all PCs
   percentVar = round((pcaObj$sdev)^2 / sum(pcaObj$sdev^2)*100)
   pca_mod = as.data.frame(pcaObj$x)
-  p = ggplot(pca_mod, aes(PC1, PC2)) + 
+  p = pca_mod[,c(pcOnX,pcOnY)] %>% setNames(c("x","y")) %>% ggplot( aes(x, y)) + 
     xlab(paste0("PC",pcOnX,": ",percentVar[pcOnX],"% variance")) +
     ylab(paste0("PC",pcOnY,": ",percentVar[pcOnY],"% variance")) +
     coord_fixed(ratio = 1)
